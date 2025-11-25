@@ -1,0 +1,25 @@
+<?php
+
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AboutController;
+use Illuminate\Support\Facades\Route;
+
+// Route publik
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/services', [ServiceController::class, 'index'])->name('services');
+
+// Group untuk form submissions 60 req per menit
+Route::middleware(['throttle:60,1'])->group(function () {
+    Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+});
+
+// Route GET untuk form (tanpa throttle)
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/booking', [BookingController::class, 'create'])->name('booking.create');
