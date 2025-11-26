@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gallery')
+@section('title', __('common.gallery'))
 @section('body-class', 'gallery-page')
 
 @section('content')
@@ -10,11 +10,9 @@
       <div class="container">
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8">
-            <h1>Gallery</h1>
-            <p class="mb-0">Koleksi foto terbaik dari Photo It, menampilkan rangkaian momen, ekspresi, dan detail visual
-              yang telah kami abadikan dari berbagai proyek. Mulai dari wedding, event, portrait, produk, hingga city view.
-            </p>
-            <a href="{{ route('contact') }}" class="cta-btn">Available for Booking</a>
+            <h1>{{ __('common.gallery') }}</h1>
+            <p class="mb-0">{{ __('common.gallery_subtitle') }}</p>
+            <a href="{{ route('contact') }}" class="cta-btn">{{ __('common.available_for_booking') }}</a>
           </div>
         </div>
       </div>
@@ -31,7 +29,7 @@
             <!-- Category Filter -->
             <div class="col-md-6 col-lg-4">
               <select name="category" id="gallery-category" class="form-control gallery-filter-select">
-                <option value="">Semua Kategori</option>
+                <option value="">All Categories</option>
                 @foreach($categories as $category)
                   <option value="{{ $category->id }}" {{ ($selectedCategory ?? '') == $category->id ? 'selected' : '' }}>
                     {{ $category->category_name }}
@@ -44,7 +42,7 @@
             <div class="col-md-12 col-lg-4">
               <div class="d-flex gap-2">
                 <button type="submit" class="btn-filter">
-                  <i class="bi bi-funnel"></i> Filter
+                  <i class="bi bi-funnel"></i>Filter
                 </button>
                 @if($searchTerm || $selectedCategory)
                   <a href="{{ route('gallery') }}" class="btn-reset">
@@ -61,12 +59,12 @@
       @if($searchTerm || $selectedCategory)
         <div class="gallery-results-info mt-3" data-aos="fade-up" data-aos-delay="150">
           <p class="mb-0">
-            Menampilkan <strong>{{ $galleryItems->count() }}</strong> gambar
+            {{ __('common.gallery_results_count') }} <strong>{{ $galleryItems->count() }}</strong> gambar
             @if($searchTerm)
-              untuk "<strong>{{ $searchTerm }}</strong>"
+              {{ __('common.gallery_results_count_search_term') }} "<strong>{{ $searchTerm }}</strong>"
             @endif
             @if($selectedCategory)
-              dalam kategori <strong>{{ $categories->where('id', $selectedCategory)->first()?->category_name }}</strong>
+              {{ __('common.gallery_results_count_selected_category') }} <strong>{{ $categories->where('id', $selectedCategory)->first()?->category_name }}</strong>
             @endif
           </p>
         </div>
@@ -93,14 +91,14 @@
             <i class="bi bi-image" style="font-size: 48px; opacity: 0.3; margin-bottom: 15px;"></i>
             <p style="font-size: 18px; opacity: 0.7;">
               @if($searchTerm || $selectedCategory)
-                Tidak ada gambar yang ditemukan dengan filter yang dipilih.
+                {{ __('common.gallery_empty_search_term_selected_category') }}
               @else
-                Belum ada gallery yang ditampilkan.
+                {{ __('common.gallery_empty_no_gallery') }}
               @endif
             </p>
             @if($searchTerm || $selectedCategory)
               <a href="{{ route('gallery') }}" class="btn-reset mt-3">
-                <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
+                <i class="bi bi-arrow-counterclockwise"></i> {{ __('common.gallery_reset_filter_button') }}
               </a>
             @endif
           </div>

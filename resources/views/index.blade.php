@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', __('common.home'))
 @section('body-class', 'index-page')
 
 @section('content')
@@ -9,16 +9,16 @@
       <div class="booking-success-notification">
         <div class="d-flex align-items-center justify-content-between">
           <div class="flex-grow-1">
-            <strong style="font-size: 18px; display: block; margin-bottom: 8px;">🎉 Booking Berhasil!</strong>
+            <strong style="font-size: 18px; display: block; margin-bottom: 8px;">{{ __('common.booking_success_title') }}</strong>
             <div style="font-size: 16px;">
               {!! session('success') !!}
             </div>
             <div style="margin-top: 10px; font-size: 14px; opacity: 0.9;">
-              Kami akan menghubungi Anda segera untuk konfirmasi booking.
+              {{ __('common.booking_success_message') }}
             </div>
           </div>
           <button type="button" class="notification-close"
-            onclick="this.closest('.booking-success-notification').style.display='none'" aria-label="Close">
+            onclick="this.closest('.booking-success-notification').style.display='none'" aria-label="{{ __('common.close') }}">
             <i class="bi bi-x-lg"></i>
           </button>
         </div>
@@ -39,12 +39,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-          <h2><span>We're</span><span class="underlight">Photo It</span> a Professional<span> Company Photographer from
-              Jakarta</span></h2>
-          <p>Photo It hadir untuk mengabadikan setiap momen berharga Anda melalui layanan fotografi profesional, mulai
-            dari wedding, event, portrait, produk, hingga city view. Kami berkomitmen menghadirkan hasil terbaik yang
-            mampu bercerita dan menyimpan kenangan Anda selamanya.</p>
-          <a href="{{ route('contact') }}" class="btn-get-started">Available for Booking</a>
+          <h2><span>{{ __('common.home_hero_title') }}</span><span class="underlight">{{ __('common.home_hero_company') }}</span>{{ __('common.home_hero_subtitle') }}</h2>
+          <p>{{ __('common.home_hero_description') }}</p>
+          <a href="{{ route('contact') }}" class="btn-get-started">{{ __('common.available_for_booking') }}</a>
         </div>
       </div>
     </div>
@@ -66,7 +63,7 @@
           </div>
         @empty
           <div class="col-12 text-center">
-            <p>Belum ada gallery yang ditampilkan.</p>
+            <p>{{ __('common.home_gallery_empty') }}</p>
           </div>
         @endforelse
       </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact')
+@section('title', __('common.contact'))
 @section('body-class', 'contact-page')
 
 @section('content')
@@ -10,9 +10,8 @@
       <div class="container">
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8">
-            <h1>Contact</h1>
-            <p class="mb-0">Tim Photo It siap membantu merencanakan pemotretan brand, pernikahan, maupun event korporat
-              Anda. Ceritakan kebutuhan visual Anda dan kami akan merespons kurang dari 24 jam.</p>
+            <h1>{{ __('common.contact') }}</h1>
+            <p class="mb-0">{{ __('common.contact_subtitle') }}</p>
           </div>
         </div>
       </div>
@@ -28,8 +27,8 @@
             <div class="info-item d-flex align-items-center">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
-                <h3>Studio</h3>
-                <p>Jl. Senopati No. 14, Kebayoran Baru<br>Jakarta Selatan 12190</p>
+                <h3>{{ __('common.contact_studio') }}</h3>
+                <p>Jl. Senopati No. 14, Kebayoran Baru<br>{{ __('common.contact_studio_city') }}</p>
               </div>
             </div>
           </div>
@@ -38,8 +37,8 @@
             <div class="info-item d-flex align-items-center">
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
-                <h3>Telepon</h3>
-                <p>+62 811-2222-410<br>Senin - Sabtu, 09.00–20.00 WIB</p>
+                <h3>0811-2222-410</h3>
+                <p>{{ __('common.contact_session_hours') }}</p>
               </div>
             </div>
           </div>
@@ -48,8 +47,8 @@
             <div class="info-item d-flex align-items-center">
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
-                <h3>Email</h3>
-                <p>hello@photoit.id<br>booking@photoit.id</p>
+                <h3>hello@photoit.id</h3>
+                <p>booking@photoit.id</p>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 @php
     use App\Models\Setting;
 
-    $copyright = Setting::get('footer_copyright', '© Copyright Photo It All Rights Reserved');
-    $credits = Setting::get('footer_credits', 'Designed by BootstrapMade');
+    $copyright = Setting::getTranslated('footer_copyright', '© Copyright Photo It All Rights Reserved');
+    $credits = Setting::getTranslated('footer_credits', 'Designed by BootstrapMade');
     $creditsUrl = Setting::get('footer_credits_url', 'https://bootstrapmade.com/');
     $facebook = Setting::get('footer_facebook');
     $twitter = Setting::get('footer_twitter');

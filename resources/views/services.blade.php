@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Services')
+@section('title', __('common.services'))
 @section('body-class', 'services-page')
 
 @section('content')
@@ -10,8 +10,8 @@
       <div class="container">
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8">
-            <h1>Services</h1>
-            <p class="mb-0">Layanan profesional dari Photo It untuk kebutuhan fotografi Anda</p>
+            <h1>{{ __('common.services') }}</h1>
+            <p class="mb-0">{{ __('common.services_subtitle') }}</p>
           </div>
         </div>
       </div>
@@ -32,22 +32,22 @@
               <p class="flex-grow-1 mb-3">{{ $service->description }}</p>
               @if($service->price)
                 <div class="pricing-info mb-3">
-                  <span class="price-label">Starting from</span>
+                  <span class="price-label">{{ __('common.services_starting_from') }}</span>
                   <h3 class="price-amount mb-0">Rp {{ number_format($service->price, 0, ',', '.') }}</h3>
                 </div>
               @else
                 <div class="pricing-info mb-3">
-                  <span class="price-label">Contact us for pricing</span>
+                  <span class="price-label">{{ __('common.services_contact_pricing') }}</span>
                 </div>
               @endif
               <a href="{{ route('booking.create', ['service' => $service->id]) }}" class="btn-book-now">
-                Booking
+                {{ __('common.booking') }}
               </a>
             </div>
           </div>
         @empty
           <div class="col-12 text-center">
-            <p>Belum ada layanan yang tersedia.</p>
+            <p>{{ __('common.services_empty') }}</p>
           </div>
         @endforelse
       </div>
@@ -57,8 +57,8 @@
   <!-- Testimonials Section -->
 <section id="testimonials" class="testimonials section">
   <div class="container section-title" data-aos="fade-up">
-    <h2>Testimonials</h2>
-    <p>What they are saying</p>
+    <h2>{{ __('common.about_testimonials_title') }}</h2>
+    <p>{{ __('common.about_testimonials_subtitle') }}</p>
   </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -112,7 +112,7 @@
         @empty
           <div class="swiper-slide">
             <div class="testimonial-item">
-              <p>Belum ada testimonial yang tersedia.</p>
+              <p>{{ __('common.about_testimonials_empty') }}</p>
             </div>
           </div>
         @endforelse
