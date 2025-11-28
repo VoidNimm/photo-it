@@ -24,7 +24,7 @@ return [
     // Home Page
     'home_hero_title' => 'Kami',
     'home_hero_company' => 'Photo It',
-    'home_hero_subtitle' => 'adalah Foto Professional dari Jakarta',
+    'home_hero_subtitle' => 'adalah Fotografi Professional dari Jakarta',
     'home_hero_description' => 'Photo It hadir untuk mengabadikan setiap momen berharga Anda melalui layanan fotografi profesional, mulai dari wedding, event, portrait, produk, hingga city view. Kami berkomitmen menghadirkan hasil terbaik yang mampu bercerita dan menyimpan kenangan Anda selamanya.',
     'home_gallery_empty' => 'Belum ada gallery yang ditampilkan.',
     

@@ -77,7 +77,7 @@
 
         <div class="row gy-4">
           <div class="col-md-6">
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" maxlength="255"
               placeholder="Nama Lengkap *" value="{{ old('name') }}" required>
             @error('name')
               <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -85,7 +85,7 @@
           </div>
 
           <div class="col-md-6">
-            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" maxlength="255"
               placeholder="Email *" value="{{ old('email') }}" required>
             @error('email')
               <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -93,7 +93,7 @@
           </div>
 
           <div class="col-md-6">
-            <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone"
+            <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" maxlength="255"
               placeholder="Nomor Telepon (Opsional)" value="{{ old('phone') }}">
             @error('phone')
               <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -101,7 +101,7 @@
           </div>
 
           <div class="col-md-6">
-            <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject"
+            <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" maxlength="255"
               placeholder="Subjek *" value="{{ old('subject') }}" required>
             @error('subject')
               <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -109,7 +109,7 @@
           </div>
 
           <div class="col-md-12">
-            <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="6"
+            <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="6" maxlength="1000"
               placeholder="Pesan Anda *" required>{{ old('message') }}</textarea>
             @error('message')
               <div class="invalid-feedback d-block">{{ $message }}</div>

@@ -7,26 +7,24 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    // Menampilkan halaman contact
     public function index()
     {
-        // Langsung tampilkan view tanpa data
         return view('contact');
     }
 
-    // Menyimpan pesan dari form contact
+    // nyimpan pesan dari form contact
     public function send(Request $request)
     {
-        // Validasi data yang dikirim dari form
+        // validasi data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string|max:1000',
-            'phone' => 'nullable|string|max:50',
+            'name' => 'required|string|min:5',
+            'email' => 'required|email|min:5',
+            'subject' => 'required|string|min:5',
+            'message' => 'required|string|min:10',
+            'phone' => 'nullable|string|min:5',
         ]);
 
-        // Simpan pesan ke database
+        // simpan pesan ke database
         ContactMessage::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -36,7 +34,6 @@ class ContactController extends Controller
             'is_read' => false,
         ]);
 
-        // Kembali ke halaman contact dengan pesan sukses
         return back()->with('success', 'Pesan berhasil dikirim!');
     }
 }
