@@ -10,33 +10,46 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libicu-dev \
+    libzip-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl zip
+# Install PHP extensions dengan konfigurasi eksplisit
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install -j$(nproc) \
+        pdo_mysql \
+        mbstring \
+        exif \
+        pcntl \
+        bcmath \
+        gd \
+        intl \
+        zip
 
-# Enable PHP extensions (pastikan ter-enable)
-RUN docker-php-ext-enable intl zip pdo_mysql mbstring gd bcmath
+# Verify extensions are installed
+RUN php -m | grep -E 'intl|zip|pdo_mysql|mbstring|gd|bcmath'
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first (for better caching)
+# Copy composer files
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies
+# Install PHP dependencies (verify extensions work)
 RUN composer install --optimize-autoloader --no-dev --no-interaction --no-scripts
 
 # Copy package files
 COPY package.json package-lock.json ./
 
 # Install Node dependencies
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install
+RUN npm install
 
 # Copy application files
 COPY . .
@@ -53,8 +66,8 @@ RUN chown -R www-data:www-data /var/www/html \
 # Run post-install scripts
 RUN composer dump-autoload --optimize
 
-# Expose port 8000
+# Expose port
 EXPOSE 8000
 
-# Start PHP server
+# Start server
 CMD php artisan serve --host=0.0.0.0 --port=8000
