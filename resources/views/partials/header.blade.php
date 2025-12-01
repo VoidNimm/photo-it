@@ -47,6 +47,25 @@
                     <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact*') ? 'active' : '' }}">{{ __('common.contact') }}</a></li>
                 @endif
                 
+                                {{-- NEW: Social Links untuk Mobile (Hanya tampil di < 1200px) --}}
+                                @if($facebook || $twitter || $instagram || $linkedin)
+                    <li class="mobile-social-links d-xl-none d-flex justify-content-center py-2">
+                        <div class="header-social-links">
+                            @if($facebook)
+                                <a href="{{ $facebook }}" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+                            @endif
+                            @if($twitter)
+                                <a href="{{ $twitter }}" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                            @endif
+                            @if($instagram)
+                                <a href="{{ $instagram }}" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                            @endif
+                            @if($linkedin)
+                                <a href="{{ $linkedin }}" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+                            @endif
+                        </div>
+                    </li>
+                @endif
                 {{-- Language Switcher untuk Mobile (di dalam menu) --}}
                 <li class="mobile-lang-switcher d-xl-none">
                     <div class="mobile-lang-links">
@@ -63,7 +82,7 @@
         </nav>
 
         {{-- Social Links + Language Switcher Container untuk Desktop --}}
-        <div class="header-actions d-flex align-items-center">
+        <div class="header-actions d-none d-xl-flex align-items-center">
             <div class="header-social-links">
                 @if($facebook)
                     <a href="{{ $facebook }}" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>

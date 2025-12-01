@@ -27,8 +27,14 @@
     <link href="{{ asset('build/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('build/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <!-- Main CSS File -->
+    <!-- Main CSS File (Template PhotoFolio) -->
     <link href="{{ asset('build/assets/css/main.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS dengan Responsive Files (dari public/css/) -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Vite Assets (jika masih menggunakan Tailwind via Vite) -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="@yield('body-class', 'index-page')">
@@ -56,14 +62,6 @@
     <script src="{{ asset('build/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('build/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('build/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-    <!-- Main CSS File -->
-    <link href="{{ asset('build/assets/css/main.css') }}" rel="stylesheet">
-
-    <!-- Vite CSS (untuk app.css dengan Tailwind dan custom styles) -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Main JS File -->
     <script src="{{ asset('build/assets/js/main.js') }}"></script>

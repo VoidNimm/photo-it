@@ -1,0 +1,83 @@
+@media (max-width: 1200px) {
+    .header .logo {
+        order: 1;
+    }
+
+    .header .logo h1 {
+        font-size: 26px;
+    }
+
+    .header .logo i {
+        font-size: 20px;
+    }
+
+    .header .header-social-links {
+        order: 2;
+    }
+
+    .header .header-social-links a {
+        font-size: 16px;
+    }
+
+    .header .navmenu {
+        order: 3;
+    }
+}
+
+@media (max-width: 1200px) {
+    .header .logo {
+        order: 1;
+    }
+
+    .header .logo h1 {
+        font-size: 26px;
+    }
+
+    .header .logo i {
+        font-size: 20px;
+    }
+
+    .header-actions {
+        order: 2;
+    }
+
+    .header .header-social-links a {
+        font-size: 14px;
+        padding: 0 4px;
+    }
+
+    .header .navmenu {
+        order: 3;
+    }
+    
+    .language-switcher {
+        display: none !important;
+    }
+}   
+
+@media (max-width: 1199.98px) {
+    /* Styling khusus untuk social links di dalam hamburger menu */
+    .mobile-social-links .header-social-links a {
+        font-size: 18px;
+        padding: 0 8px;
+        color: var(--nav-dropdown-color);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        transition: 0.3s;
+        margin: 0 2px;
+    }
+
+    .mobile-social-links .header-social-links a:hover {
+        color: var(--accent-color);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Pastikan actions desktop benar-benar hilang (backup jika class bootstrap tidak jalan) */
+    .header > .container-fluid > .header-actions {
+        display: none !important;
+    }
+}

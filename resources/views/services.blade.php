@@ -55,70 +55,73 @@
   </section>
 
   <!-- Testimonials Section -->
-<section id="testimonials" class="testimonials section">
-  <div class="container section-title" data-aos="fade-up">
-    <h2>{{ __('common.about_testimonials_title') }}</h2>
-    <p>{{ __('common.about_testimonials_subtitle') }}</p>
-  </div>
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="swiper init-swiper">
-      <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-            "delay": 5000,
-            "disableOnInteraction": false,
-            "pauseOnMouseEnter": true
-          },
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets",
-            "clickable": true
-          },
-          "grabCursor": true,
-          "allowTouchMove": true,
-          "breakpoints": {
-            "320": {
-              "slidesPerView": 1,
-              "spaceBetween": 40
-            },
-            "1200": {
-              "slidesPerView": 3,
-              "spaceBetween": 1
-            }
-          }
-        }
-      </script>
-      <div class="swiper-wrapper">
-        @forelse($testimonials as $testimonial)
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <div class="stars">
-                @for($i = 0; $i < $testimonial->rating; $i++)
-                  <i class="bi bi-star-fill"></i>
-                @endfor
-              </div>
-              <p>{{ $testimonial->review_text }}</p>
-              <div class="profile mt-auto">
-                <img src="{{ $testimonial->image_url ?? asset('build/assets/img/testimonials/testimonials-1.jpg') }}"
-                  class="testimonial-img" alt="{{ $testimonial->client_name }}">
-                <h3>{{ $testimonial->client_name }}</h3>
-                <h4>{{ $testimonial->client_title }}</h4>
-              </div>
-            </div>
-          </div>
-        @empty
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>{{ __('common.about_testimonials_empty') }}</p>
-            </div>
-          </div>
-        @endforelse
-      </div>
-      <div class="swiper-pagination"></div>
+  <section id="testimonials" class="testimonials section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>{{ __('common.about_testimonials_title') }}</h2>
+      <p>{{ __('common.about_testimonials_subtitle') }}</p>
     </div>
-  </div>
-</section>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper init-swiper">
+        <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000,
+                "disableOnInteraction": false,
+                "pauseOnMouseEnter": true
+              },
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "grabCursor": true,
+              "allowTouchMove": true,
+              "centeredSlides": true,
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40,
+                  "centeredSlides": true
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 20,
+                  "centeredSlides": true
+                }
+              }
+            }
+            </script>
+        <div class="swiper-wrapper">
+          @forelse($testimonials as $testimonial)
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="stars">
+                  @for($i = 0; $i < $testimonial->rating; $i++)
+                    <i class="bi bi-star-fill"></i>
+                  @endfor
+                </div>
+                <p>{{ $testimonial->review_text }}</p>
+                <div class="profile mt-auto">
+                  <img src="{{ $testimonial->image_url ?? asset('build/assets/img/testimonials/testimonials-1.jpg') }}"
+                    class="testimonial-img" alt="{{ $testimonial->client_name }}">
+                  <h3>{{ $testimonial->client_name }}</h3>
+                  <h4>{{ $testimonial->client_title }}</h4>
+                </div>
+              </div>
+            </div>
+          @empty
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>{{ __('common.about_testimonials_empty') }}</p>
+              </div>
+            </div>
+          @endforelse
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
 @endsection
