@@ -10,7 +10,8 @@ nixPkgs = [
     "php82Extensions.bcmath",
     "php82Extensions.gd",
     "php82Extensions.fileinfo",
-    "composer"
+    "php82Packages.composer",
+    "unzip" 
 ]
 
 [phases.build]
