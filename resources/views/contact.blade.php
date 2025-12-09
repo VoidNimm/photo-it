@@ -55,12 +55,7 @@
         </div>
       </div>
 
-      @if(session('success'))
-        <div class="contact-form sent-message" style="display: block;">
-          {{ session('success') }}
-        </div>
-      @endif
-
+      {{-- Hapus success message div karena akan menggunakan SweetAlert --}}
       @if($errors->any())
         <div class="contact-form error-message" style="display: block;">
           <ul class="mb-0">
@@ -132,32 +127,111 @@
       </form>
 @endsection
 
-    @push('scripts')
-      @if(config('services.recaptcha.site_key'))
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
+@push('scripts')
+  <script>
+    // Tunggu sampai DOM dan Vite bundle ter-load
+    (function() {
+      function initContactForm() {
+        // Pastikan Swal sudah tersedia (dari Vite bundle)
+        if (typeof window.Swal === 'undefined') {
+          // Jika belum, tunggu sebentar dan coba lagi
+          setTimeout(initContactForm, 100);
+          return;
+        }
+
+        const Swal = window.Swal;
+
+        // SweetAlert untuk success message
+        @if(session('success'))
+          Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#27a776',
+            confirmButtonText: 'OK',
+            timer: 5000,
+            timerProgressBar: true,
+          }).then(() => {
+            // Reset form setelah user klik OK
             const form = document.getElementById('contact-form');
-
             if (form) {
-              form.addEventListener('submit', function (e) {
-                // Tunggu sampai reCAPTCHA script ter-load
-                if (typeof grecaptcha === 'undefined') {
-                  e.preventDefault();
-                  alert('reCAPTCHA sedang dimuat, silakan tunggu sebentar dan coba lagi.');
-                  return false;
-                }
-
-                // Pastikan reCAPTCHA sudah diisi
-                const recaptchaResponse = grecaptcha.getResponse();
-                if (!recaptchaResponse) {
-                  e.preventDefault();
-                  alert('Silakan centang reCAPTCHA terlebih dahulu.');
-                  return false;
-                }
-              });
+              form.reset();
             }
           });
-        </script>
-      @endif
-    @endpush
+        @endif
+
+        // SweetAlert untuk error messages
+        @if($errors->any())
+          const errorMessages = [
+            @foreach($errors->all() as $error)
+              '{{ $error }}'@if(!$loop->last),@endif
+            @endforeach
+          ];
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            html: '<ul style="text-align: left; margin: 10px 0; padding-left: 20px;">' +
+              errorMessages.map(msg => '<li>' + msg + '</li>').join('') +
+              '</ul>',
+            confirmButtonColor: '#27a776',
+            confirmButtonText: 'OK'
+          });
+        @endif
+
+        // Form submission dengan reCAPTCHA
+        const form = document.getElementById('contact-form');
+        if (form) {
+          form.addEventListener('submit', function (e) {
+            @if(config('services.recaptcha.site_key'))
+              // Tunggu sampai reCAPTCHA script ter-load
+              if (typeof grecaptcha === 'undefined') {
+                e.preventDefault();
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Tunggu sebentar',
+                  text: 'reCAPTCHA sedang dimuat, silakan tunggu sebentar dan coba lagi.',
+                  confirmButtonColor: '#27a776',
+                });
+                return false;
+              }
+
+              // Pastikan reCAPTCHA sudah diisi
+              const recaptchaResponse = grecaptcha.getResponse();
+              if (!recaptchaResponse) {
+                e.preventDefault();
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Perhatian',
+                  text: 'Silakan centang reCAPTCHA terlebih dahulu.',
+                  confirmButtonColor: '#27a776',
+                });
+                return false;
+              }
+            @endif
+
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Mengirim...';
+            }
+          });
+        }
+      }
+
+      // Jalankan setelah DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initContactForm);
+      } else {
+        // DOM sudah ready, tunggu sebentar untuk memastikan Vite bundle ter-load
+        setTimeout(initContactForm, 200);
+      }
+    })();
+  </script>
+
+  {{-- reCAPTCHA tetap CDN karena harus dari Google --}}
+  @if(config('services.recaptcha.site_key'))
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  @endif
+@endpush

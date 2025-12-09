@@ -261,38 +261,261 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+  # Navigation Menu - Base Styles (Desktop)
+  --------------------------------------------------------------*/
+.navmenu {
+    padding: 0;
+    position: relative;
+}
+
+.navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navmenu li {
+    position: relative;
+}
+
+.navmenu a,
+.navmenu a:focus {
+    color: var(--nav-color);
+    padding: 18px 15px;
+    font-size: 14px;
+    font-family: var(--nav-font);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.navmenu a i,
+.navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.navmenu li:last-child a {
+    padding-right: 0;
+}
+
+.navmenu li:hover > a,
+.navmenu .active,
+.navmenu .active:focus {
+    color: var(--nav-hover-color);
+}
+
+.navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: var(--nav-dropdown-background-color);
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+}
+
+.navmenu .dropdown ul li {
+    min-width: 200px;
+}
+
+.navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: var(--nav-dropdown-color);
+}
+
+.navmenu .dropdown ul a i {
+    font-size: 12px;
+}
+
+.navmenu .dropdown ul a:hover,
+.navmenu .dropdown ul .active:hover,
+.navmenu .dropdown ul li:hover > a {
+    color: var(--nav-dropdown-hover-color);
+}
+
+.navmenu .dropdown:hover > ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
+}
+
+.navmenu .dropdown .dropdown:hover > ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+    display: none;
+}
+
+/*--------------------------------------------------------------
+  # Mobile Navigation Styles (Below 1200px)
+  --------------------------------------------------------------*/
+  @media (max-width: 1199px) {
+    .mobile-nav-toggle {
+        display: block !important;
+    }
+
+    .navmenu {
+        padding: 0;
+        z-index: 9997;
+    }
+
+    .navmenu ul {
+        display: none;
+        position: absolute;
+        inset: 60px 20px 20px 20px;
+        padding: 10px 0;
+        margin: 0;
+        border-radius: 6px;
+        background-color: var(--nav-mobile-background-color);
+        overflow-y: auto;
+        transition: 0.3s;
+        z-index: 9998;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .navmenu a,
+    .navmenu a:focus {
+        color: var(--nav-dropdown-color);
+        padding: 10px 20px;
+        font-family: var(--nav-font);
+        font-size: 17px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
+
+    .navmenu a i,
+    .navmenu a:focus i {
+        font-size: 12px;
+        line-height: 0;
+        margin-left: 5px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 0.3s;
+        background-color: color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 90%
+        );
+    }
+
+    .navmenu a i:hover,
+    .navmenu a:focus i:hover {
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+    }
+
+    .navmenu a:hover,
+    .navmenu .active,
+    .navmenu .active:focus {
+        color: var(--nav-dropdown-hover-color);
+    }
+
+    .navmenu .active i,
+    .navmenu .active:focus i {
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+        transform: rotate(180deg);
+    }
+
+    .navmenu .dropdown ul {
+        position: static;
+        display: none;
+        z-index: 99;
+        padding: 10px 0;
+        margin: 10px 20px;
+        background-color: var(--nav-dropdown-background-color);
+        border: 1px solid
+            color-mix(in srgb, var(--default-color), transparent 90%);
+        box-shadow: none;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .navmenu .dropdown ul ul {
+        background-color: rgba(33, 37, 41, 0.1);
+    }
+
+    .navmenu .dropdown > .dropdown-active {
+        display: block;
+        background-color: rgba(33, 37, 41, 0.03);
+    }
+
+    .mobile-nav-active {
+        overflow: hidden;
+    }
+
+    .mobile-nav-active .mobile-nav-toggle {
+        color: #fff;
+        position: absolute;
+        font-size: 32px;
+        top: 15px;
+        right: 15px;
+        margin-right: 0;
+        z-index: 9999;
+    }
+
+    .mobile-nav-active .navmenu {
+        position: fixed;
+        overflow: hidden;
+        inset: 0;
+        background: rgba(33, 37, 41, 0.8);
+        transition: 0.3s;
+    }
+
+    .mobile-nav-active .navmenu > ul {
+        display: block !important;
+    }
+}
+
+/*--------------------------------------------------------------
 # Header Actions (Social Links + Language Switcher)
 --------------------------------------------------------------*/
 .header-actions {
     display: flex;
     align-items: center;
     gap: 0;
-}
-
-.header .header-social-links {
-    padding-right: 0;
-    display: flex;
-    align-items: center;
-}
-
-.header .header-social-links a {
-    color: color-mix(in srgb, var(--default-color), transparent 40%);
-    padding: 0 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-    font-size: 16px;
-}
-
-.header .header-social-links a:hover {
-    color: var(--accent-color);
-}
-
-@media (max-width: 1199x) {
-    .header .header-social-links {
-        display: none;
-    }
 }
 
 /*--------------------------------------------------------------
@@ -364,10 +587,257 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Auth Menu - Desktop
+--------------------------------------------------------------*/
+.auth-menu {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* User Dropdown Button */
+.btn-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
+    background: color-mix(in srgb, var(--default-color), transparent 95%);
+    color: var(--default-color);
+    font-family: var(--default-font);
+    cursor: pointer;
+}
+
+.btn-user:hover,
+.btn-user:focus {
+    background: color-mix(in srgb, var(--accent-color), transparent 90%);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: none;
+}
+
+.btn-user i:first-child {
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+.btn-user .auth-user-name {
+    font-weight: 500;
+    color: var(--default-color);
+}
+
+.btn-user:hover .auth-user-name,
+.btn-user:focus .auth-user-name {
+    color: var(--accent-color);
+}
+
+.btn-user i:last-child {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.btn-user[aria-expanded="true"] i:last-child {
+    transform: rotate(180deg);
+}
+
+/* User Dropdown Menu */
+.dropdown-menu[aria-labelledby="userDropdown"] {
+    min-width: 220px;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--background-color);
+    margin-top: 8px;
+}
+
+.dropdown-header {
+    padding: 15px;
+    background: color-mix(in srgb, var(--default-color), transparent 95%);
+    border-bottom: 1px solid
+        color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.dropdown-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dropdown-user-info i {
+    font-size: 32px;
+    color: var(--accent-color);
+}
+
+.dropdown-user-name {
+    font-weight: 600;
+    color: var(--heading-color);
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.dropdown-user-email {
+    font-size: 12px;
+    color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+.dropdown-divider {
+    margin: 0;
+    border-color: color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.dropdown-item.logout-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--default-color);
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-item.logout-item:hover {
+    background: color-mix(in srgb, #df1529, transparent 90%);
+    color: #df1529;
+}
+
+.dropdown-item.logout-item i {
+    font-size: 16px;
+}
+
+.auth-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--default-color);
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--default-color), transparent 95%);
+}
+
+.auth-user-info i {
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+.btn-auth-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+    font-family: var(--default-font);
+    cursor: pointer;
+    background: transparent;
+}
+
+.btn-auth-nav i {
+    font-size: 14px;
+}
+
+.btn-auth-nav.login-btn {
+    color: var(--default-color);
+    border-color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.btn-auth-nav.login-btn:hover {
+    background: color-mix(in srgb, var(--accent-color), transparent 90%);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.btn-auth-nav.register-btn {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-auth-nav.register-btn:hover {
+    background: color-mix(in srgb, var(--accent-color) 90%, white 10%);
+    border-color: var(--accent-color);
+    color: var(--contrast-color);
+}
+
+/*--------------------------------------------------------------
+# Auth Menu - Mobile (Inside Menu)
+--------------------------------------------------------------*/
+.mobile-auth-menu {
+    border-top: 1px solid
+        color-mix(in srgb, var(--default-color), transparent 85%);
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.mobile-auth-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.mobile-auth-links .auth-user-name {
+    color: var(--default-color);
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.mobile-auth-links .auth-link {
+    color: var(--default-color);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mobile-auth-links .auth-link:hover {
+    background: color-mix(in srgb, var(--accent-color), transparent 90%);
+    color: var(--accent-color);
+}
+
+.mobile-auth-links .auth-link.logout-btn {
+    color: #df1529;
+}
+
+.mobile-auth-links .auth-link.logout-btn:hover {
+    background: color-mix(in srgb, #df1529, transparent 90%);
+    color: #df1529;
+}
+
+.mobile-auth-links .auth-divider {
+    color: color-mix(in srgb, var(--default-color), transparent 60%);
+    font-size: 14px;
+}
+
+/*--------------------------------------------------------------
 # Language Switcher - Mobile (Inside Menu)
 --------------------------------------------------------------*/
 .mobile-lang-switcher {
-    border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    border-top: 1px solid
+        color-mix(in srgb, var(--default-color), transparent 85%);
     margin-top: 10px;
     padding-top: 15px;
 }
@@ -1004,7 +1474,6 @@ section,
     pointer-events: auto;
 }
 
-
 /*--------------------------------------------------------------
   # Gallery Details Section
   --------------------------------------------------------------*/
@@ -1183,7 +1652,6 @@ section,
     position: relative;
     z-index: 1;
     justify-content: center;
-    
 }
 
 .services .service-item:before {
@@ -1442,7 +1910,8 @@ section,
     color: var(--default-color);
 }
 
-.contact .contact-form .btn-send, .booking .booking-form button[type="submit"] {
+.contact .contact-form .btn-send,
+.booking .booking-form button[type="submit"] {
     color: var(--default-color);
     background: var(--accent-color);
     font-weight: 400;
@@ -1518,6 +1987,7 @@ section,
 .gallery-filters {
     border-radius: 0;
     margin-bottom: 0;
+    color: var(--default-color);
 }
 
 .gallery-filter-select {
@@ -1638,17 +2108,198 @@ section,
     opacity: 1;
 }
 
-/* Import responsive stylesheets */
-@import url('./responsive/xs-360.css');
-@import url('./responsive/xs-361-480.css');
-@import url('./responsive/xs-481-575.css');
-@import url('./responsive/sm-576-767.css');
-@import url('./responsive/md-768-991.css');
-@import url('./responsive/lg-992-1199.css');
-@import url('./responsive/xl-1200-1399.css');
-@import url('./responsive/xxl-1400.css');
-@import url('./responsive/max-400.css');
-@import url('./responsive/max-575.css');
-@import url('./responsive/max-768.css');
-@import url('./responsive/max-1199.css');
-@import url('./responsive/max-1200.css');
+/*--------------------------------------------------------------
+  # Auth Pages (Login & Register)
+  --------------------------------------------------------------*/
+.auth-page {
+    background-color: var(--background-color);
+}
+
+.auth {
+    padding: 40px 0 80px 0;
+}
+
+.auth-card {
+    background-color: var(--surface-color);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.auth-form .form-group {
+    margin-bottom: 25px;
+}
+
+.auth-form .form-label {
+    color: var(--heading-color);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    font-family: var(--default-font);
+}
+
+.auth-form .form-control {
+    font-size: 14px;
+    padding: 12px 15px;
+    box-shadow: none;
+    border-radius: 4px;
+    color: var(--default-color);
+    background-color: var(--background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.auth-form .form-control:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    background-color: var(--background-color);
+    color: var(--default-color);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.auth-form .form-control::placeholder {
+    color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.auth-form .form-control.is-invalid {
+    border-color: #df1529;
+}
+
+.auth-form .form-control.is-invalid:focus {
+    border-color: #df1529;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #df1529, transparent 90%);
+}
+
+.auth-form .invalid-feedback {
+    display: block;
+    color: #df1529;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.auth-form .form-check-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.auth-form .form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: var(--background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+    border-radius: 3px;
+}
+
+.auth-form .form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.auth-form .form-check-input:focus {
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.auth-form .form-check-label {
+    color: var(--default-color);
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.btn-auth {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+    font-weight: 400;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px 40px;
+    border: 0;
+    border-radius: 4px;
+    transition: 0.5s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-family: var(--default-font);
+}
+
+.btn-auth:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 90%, white 10%);
+    color: var(--contrast-color);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid
+        color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.auth-footer p {
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    font-size: 14px;
+    margin: 0;
+}
+
+.auth-footer a {
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.auth-footer a:hover {
+    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    text-decoration: underline;
+}
+
+.auth-alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.auth-alert.error-message {
+    background: #df1529;
+    color: #ffffff;
+}
+
+.auth-alert.sent-message {
+    background: #059652;
+    color: #ffffff;
+}
+
+.auth-alert ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.auth-alert ul li {
+    margin-bottom: 5px;
+}
+
+.auth-alert ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive untuk Auth Pages */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .auth {
+        padding: 20px 0 60px 0;
+    }
+}

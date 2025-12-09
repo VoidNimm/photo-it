@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => 'Photo It',
     // Navigation
     'home' => 'Home',
     'about' => 'About',
@@ -87,4 +88,28 @@ return [
     'about_title' => 'About',
     'about_testimonials_title' => 'Testimonials',
     'about_testimonials_subtitle' => 'What they are saying',
+
+    // Auth Page
+    'login' => 'Login',
+    'register' => 'Register',
+    'logout' => 'Logout',
+    'remember_me' => 'Remember Me',
+    'forgot_password' => 'Forgot Password',
+    'login_with' => 'Login with',
+    'register_with' => 'Register with',
+    'login_with_google' => 'Login with Google',
+    'login_with_facebook' => 'Login with Facebook',
+    'login_with_twitter' => 'Login with Twitter',
+    'login_title' => 'Login to your account',
+    'no_account' => 'Don\'t have an account?',
+    'email' => 'Email',
+    'email_placeholder' => 'Enter your email',
+    'password' => 'Password',
+    'password_placeholder' => 'Enter your password',
+    'register_title' => 'Create a new account to access our services',
+    'name' => 'Name',
+    'name_placeholder' => 'Enter your name',
+    'password_confirmation' => 'Password Confirmation',
+    'password_confirmation_placeholder' => 'Enter your password confirmation',
+    'have_account' => 'Already have an account?',
 ];

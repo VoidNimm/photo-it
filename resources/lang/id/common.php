@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => 'Photo It',
     // Navigation
     'home' => 'Beranda',
     'about' => 'Tentang',
@@ -87,4 +88,28 @@ return [
     'about_title' => 'Tentang',
     'about_testimonials_title' => 'Testimoni',
     'about_testimonials_subtitle' => 'Apa kata mereka',
+
+    // Auth Page
+    'login' => 'Login',
+    'register' => 'Register',
+    'logout' => 'Logout',
+    'remember_me' => 'Ingat saya',
+    'forgot_password' => 'Lupa Password',
+    'login_with' => 'Login dengan',
+    'register_with' => 'Daftar dengan',
+    'login_with_google' => 'Login dengan Google',
+    'login_with_facebook' => 'Login dengan Facebook',
+    'login_with_twitter' => 'Login dengan Twitter',
+    'login_title' => 'Masuk ke akun Anda',
+    'no_account' => 'Belum punya akun?',
+    'email' => 'Email',
+    'email_placeholder' => 'Masukkan email Anda',
+    'password' => 'Password',
+    'password_placeholder' => 'Masukkan password Anda',
+    'register_title' => 'Buat akun baru untuk mengakses layanan kami',
+    'name' => 'Nama',
+    'name_placeholder' => 'Masukkan nama lengkap Anda',
+    'password_confirmation' => 'Konfirmasi Password',
+    'password_confirmation_placeholder' => 'Ulangi password Anda',
+    'have_account' => 'Sudah punya akun?',
 ];

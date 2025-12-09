@@ -63,27 +63,6 @@ class SettingsForm
                 ->reorderableWithButtons()
                 ->columnSpanFull(),
 
-            TextInput::make('navbar_facebook')
-                ->label('Facebook URL (Navbar)')
-                ->url()
-                ->maxLength(255)
-                ->placeholder('https://facebook.com/yourpage'),
-            TextInput::make('navbar_twitter')
-                ->label('Twitter/X URL (Navbar)')
-                ->url()
-                ->maxLength(255)
-                ->placeholder('https://twitter.com/yourhandle'),
-            TextInput::make('navbar_instagram')
-                ->label('Instagram URL (Navbar)')
-                ->url()
-                ->maxLength(255)
-                ->placeholder('https://instagram.com/yourhandle'),
-            TextInput::make('navbar_linkedin')
-                ->label('LinkedIn URL (Navbar)')
-                ->url()
-                ->maxLength(255)
-                ->placeholder('https://linkedin.com/in/yourprofile'),
-
             Textarea::make('footer_copyright')
                 ->label('Copyright Text')
                 ->default(fn() => Setting::get('footer_copyright', '© Copyright Photo It All Rights Reserved'))

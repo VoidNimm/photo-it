@@ -1,0 +1,26 @@
+/* Roboto Font */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+/* Inter Font */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/inter/Inter-Regular.ttf') format('truetype');
+}
+
+/* Cardo Font */
+@font-face {
+    font-family: 'Cardo';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../fonts/cardo/Cardo-Regular.ttf') format('truetype');
+}
