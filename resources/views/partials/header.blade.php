@@ -52,7 +52,7 @@
                 {{-- Language Switcher untuk Mobile --}}
                 <li class="mobile-lang-switcher d-xl-none">
                     <div class="mobile-lang-links">
-                        <span class="lang-label">Language:</span>
+                        <span class="lang-label">{{ __('common.language') }}</span>
                         <a href="{{ route('language.switch', 'en') }}"
                             class="lang-link {{ app()->getLocale() === 'en' ? 'active' : '' }}">EN</a>
                         <span class="lang-divider">|</span>
@@ -65,15 +65,15 @@
                 <li class="mobile-auth-menu d-xl-none">
                     <div class="mobile-auth-links">
                         @auth
-                            <span class="auth-user-name">Halo, {{ Auth::user()->name }}</span>
+                            <span class="auth-user-name">{{ __('common.hello_user') }}, {{ Auth::user()->name }}</span>
                             <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                 @csrf
-                                <button type="submit" class="auth-link logout-btn">Logout</button>
+                                <button type="submit" class="auth-link logout-btn">{{ __('common.logout') }}</button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="auth-link">Login</a>
+                            <a href="{{ route('login') }}" class="auth-link">{{ __('common.login') }}</a>
                             <span class="auth-divider">|</span>
-                            <a href="{{ route('register') }}" class="auth-link">Register</a>
+                            <a href="{{ route('register') }}" class="auth-link">{{ __('common.register') }}</a>
                         @endauth
                     </div>
                 </li>
@@ -137,7 +137,7 @@
                                     @csrf
                                     <button type="submit" class="dropdown-item logout-item">
                                         <i class="bi bi-box-arrow-right"></i>
-                                        <span>Logout</span>
+                                        <span>{{ __('common.logout') }}</span>
                                     </button>
                                 </form>
                             </li>
@@ -146,11 +146,11 @@
                 @else
                     <a href="{{ route('login') }}" class="btn-auth-nav login-btn">
                         <i class="bi bi-box-arrow-in-right"></i>
-                        <span>Login</span>
+                        <span>{{ __('common.login') }}</span>
                     </a>
                     <a href="{{ route('register') }}" class="btn-auth-nav register-btn">
                         <i class="bi bi-person-plus"></i>
-                        <span>Register</span>
+                        <span>{{ __('common.register') }}</span>
                     </a>
                 @endauth
             </div>

@@ -9,11 +9,13 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
+use App\Concerns\LogsActivity;
 
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +33,7 @@ class User extends Authenticatable implements FilamentUser
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
-     */  
+     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -59,7 +61,7 @@ class User extends Authenticatable implements FilamentUser
     public function isSuperAdmin(): bool
     {
         return $this->role === UserRole::SuperAdmin;
-    }   
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
@@ -69,5 +71,10 @@ class User extends Authenticatable implements FilamentUser
     public function canManageUsers(): bool
     {
         return $this->isSuperAdmin();
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

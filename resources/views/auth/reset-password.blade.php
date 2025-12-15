@@ -1,25 +1,23 @@
 @extends('layouts.app')
 
-@section('title', __('common.login'))
+@section('title', 'Reset Password')
 @section('body-class', 'auth-page')
 
 @section('content')
-<!-- Page Title -->
 <div class="page-title" data-aos="fade">
     <div class="heading">
         <div class="container">
             <div class="row d-flex justify-content-center text-center">
                 <div class="col-lg-8">
-                    <h1>{{ __('common.login') }}</h1>
-                    <p class="mb-0">{{ __('common.login_title') }}</p>
+                    <h1>Reset Password</h1>
+                    <p class="mb-0">Masukkan password baru Anda</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Login Section -->
-<section id="login" class="auth section">
+<section id="reset-password" class="auth section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
@@ -34,62 +32,52 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('login') }}" class="auth-form">
+                    <form method="POST" action="{{ route('password.update') }}" class="auth-form">
                         @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group">
-                            <label for="email" class="form-label">{{ __('common.email') }}</label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="email" 
                                    class="form-control @error('email') is-invalid @enderror" 
                                    id="email" 
                                    name="email" 
-                                   value="{{ old('email') }}" 
+                                   value="{{ old('email', request()->email) }}" 
                                    required 
                                    autofocus
-                                   placeholder="{{ __('common.email_placeholder') }}">
+                                   placeholder="Masukkan email Anda">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="password" class="form-label">{{ __('common.password') }}</label>
+                            <label for="password" class="form-label">Password Baru</label>
                             <input type="password" 
                                    class="form-control @error('password') is-invalid @enderror" 
                                    id="password" 
                                    name="password" 
                                    required
-                                   placeholder="{{ __('common.password_placeholder') }}">
+                                   placeholder="Masukkan password baru">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group d-flex justify-content-between align-items-center">
-                            <div class="form-check-group">
-                                <input type="checkbox"
-                                    class="form-check-input"
-                                    id="remember"
-                                    name="remember"
-                                    value="1"
-                                    {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="remember">
-                                    {{ __('common.remember_me') }}
-                                </label>
-                            </div>
-                            <a href="{{ route('password.request') }}" class="forgot-password-link">
-                                {{ __('common.forgot_password') }}
-                            </a>
+                        <div class="form-group">
+                            <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="password_confirmation" 
+                                   name="password_confirmation" 
+                                   required
+                                   placeholder="Konfirmasi password baru">
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn-auth">{{ __('common.login') }}</button>
+                            <button type="submit" class="btn-auth">Reset Password</button>
                         </div>
                     </form>
-
-                    <div class="auth-footer">
-                        <p>{{ __('common.no_account') }} <a href="{{ route('register') }}">{{ __('common.register') }}</a></p>
-                    </div>
                 </div>
             </div>
         </div>

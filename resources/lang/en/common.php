@@ -9,9 +9,11 @@ return [
     'services' => 'Services',
     'contact' => 'Contact',
     'booking' => 'Booking',
+
+    'language' => 'Language',
     
     // Common Actions
-    'welcome' => 'Welcome',
+    'hello_user' => 'Hello',
     'read_more' => 'Read More',
     'view_all' => 'View All',
     'available_for_booking' => 'Available for Booking',
@@ -67,7 +69,10 @@ return [
     'contact_send_message' => 'Send Message',
     'contact_recaptcha_loading' => 'reCAPTCHA is loading, please wait a moment and try again.',
     'contact_recaptcha_required' => 'Please check the reCAPTCHA first.',
-    
+    'contact_success_title' => 'Success!',
+    'contact_success_message' => 'Your message has been sent successfully.',
+    'contact_error_title' => 'Oops...',
+    'contact_error_message' => 'Something went wrong. Please try again.',
     // Booking Page
     'booking_title' => 'Book Your Service',
     'booking_subtitle' => 'Fill out the form below to book photography services',

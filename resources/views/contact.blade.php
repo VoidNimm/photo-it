@@ -73,7 +73,7 @@
         <div class="row gy-4">
           <div class="col-md-6">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" maxlength="255"
-              placeholder="Nama Lengkap *" value="{{ old('name') }}" required>
+              placeholder="{{ __('common.contact_form_name') }} *" value="{{ old('name') }}" required>
             @error('name')
               <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -81,7 +81,7 @@
 
           <div class="col-md-6">
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" maxlength="255"
-              placeholder="Email *" value="{{ old('email') }}" required>
+              placeholder="{{ __('common.contact_form_email') }} *" value="{{ old('email') }}" required>
             @error('email')
               <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -89,7 +89,7 @@
 
           <div class="col-md-6">
             <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" maxlength="255"
-              placeholder="Nomor Telepon (Opsional)" value="{{ old('phone') }}">
+              placeholder="{{ __('common.contact_form_phone') }}" value="{{ old('phone') }}">
             @error('phone')
               <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -97,7 +97,7 @@
 
           <div class="col-md-6">
             <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" maxlength="255"
-              placeholder="Subjek *" value="{{ old('subject') }}" required>
+              placeholder="{{ __('common.contact_form_subject') }} *" value="{{ old('subject') }}" required>
             @error('subject')
               <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -105,7 +105,7 @@
 
           <div class="col-md-12">
             <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="6" maxlength="1000"
-              placeholder="Pesan Anda *" required>{{ old('message') }}</textarea>
+              placeholder="{{ __('common.contact_form_message') }} *" required>{{ old('message') }}</textarea>
             @error('message')
               <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -121,7 +121,7 @@
           @endif
 
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn-send" id="submit-btn">Kirim Pesan</button>
+            <button type="submit" class="btn-send" id="submit-btn">{{ __('common.contact_send_message') }}</button>
           </div>
         </div>
       </form>
@@ -145,8 +145,8 @@
         @if(session('success'))
           Swal.fire({
             icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
+            title: '{{ __('common.contact_success_title') }}',
+            text: '{{ __('common.contact_success_message') }}',
             confirmButtonColor: '#27a776',
             confirmButtonText: 'OK',
             timer: 5000,
@@ -170,7 +170,7 @@
           
           Swal.fire({
             icon: 'error',
-            title: 'Oops...',
+            title: '{{ __('common.contact_error_title') }}',
             html: '<ul style="text-align: left; margin: 10px 0; padding-left: 20px;">' +
               errorMessages.map(msg => '<li>' + msg + '</li>').join('') +
               '</ul>',

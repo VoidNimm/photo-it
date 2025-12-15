@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\LogsActivity;
 
 class Setting extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'key',
         'value',

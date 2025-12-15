@@ -9,9 +9,11 @@ return [
     'services' => 'Layanan',
     'contact' => 'Kontak',
     'booking' => 'Pemesanan',
+
+    'language' => 'Bahasa',
     
     // Common Actions
-    'welcome' => 'Selamat Datang',
+    'hello_user' => 'Halo',
     'read_more' => 'Baca Selengkapnya',
     'view_all' => 'Lihat Semua',
     'available_for_booking' => 'Tersedia untuk Booking',
@@ -67,7 +69,10 @@ return [
     'contact_send_message' => 'Kirim Pesan',
     'contact_recaptcha_loading' => 'reCAPTCHA sedang dimuat, silakan tunggu sebentar dan coba lagi.',
     'contact_recaptcha_required' => 'Silakan centang reCAPTCHA terlebih dahulu.',
-    
+    'contact_success_title' => 'Berhasil!',
+    'contact_success_message' => 'Pesan Anda telah berhasil terkirim.',
+    'contact_error_title' => 'Oops...',
+    'contact_error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
     // Booking Page
     'booking_title' => 'Pesan Layanan Anda',
     'booking_subtitle' => 'Isi form di bawah ini untuk melakukan booking layanan fotografi',

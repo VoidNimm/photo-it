@@ -37,6 +37,7 @@
 :root {
     --background-color: #000000; /* Background color for the entire website, including individual sections */
     --default-color: #fafafa; /* Default color used for the majority of the text content across the entire website */
+    --dark-color: #0e0e0e;
     --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
     --accent-color: #27a776; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
     --surface-color: #1a1a1a; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -384,7 +385,7 @@ h6 {
 /*--------------------------------------------------------------
   # Mobile Navigation Styles (Below 1200px)
   --------------------------------------------------------------*/
-  @media (max-width: 1199px) {
+@media (max-width: 1199px) {
     .mobile-nav-toggle {
         display: block !important;
     }
@@ -1987,8 +1988,23 @@ section,
 .gallery-filters {
     border-radius: 0;
     margin-bottom: 0;
-    color: var(--default-color);
+    color: var(--surface-color);
 }
+
+select.gallery-filter-select.form-control {
+    color: #000000;
+    background-color: #fafafa;
+}
+
+select.gallery-filter-select.form-control:focus {
+    color: #000000;
+    background-color: #fafafa;
+}
+
+select.gallery-filter-select.form-control option {
+    background-color: #fafafa;
+    color: #000000;
+}   
 
 .gallery-filter-select {
     font-size: 14px;
@@ -1996,6 +2012,7 @@ section,
     box-shadow: none;
     border-radius: 12px;
     color: var(--default-color);
+    background-color: var(--surface-color);
     border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
     cursor: pointer;
     width: 100%;
@@ -2012,6 +2029,8 @@ section,
 .gallery-filter-select:focus {
     border-color: var(--accent-color);
     outline: none;
+    color: var(--default-color); /* Pastikan text tetap terlihat saat focus */
+    background-color: var(--surface-color);
 }
 
 .gallery-filter-select option {
@@ -2291,6 +2310,18 @@ section,
 
 .auth-alert ul li:last-child {
     margin-bottom: 0;
+}
+
+.forgot-password-link {
+    color: #27a776;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #1e8e5f;
+    text-decoration: underline;
 }
 
 /* Responsive untuk Auth Pages */
